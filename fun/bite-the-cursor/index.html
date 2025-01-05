@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Bite - 追逐游標的幽靈</title>
+    
+    <!-- 作者信息相關配置 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../author-info/author-style.css">
+    
+    <!-- Favicon 配置 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../author-info/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../author-info/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../author-info/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../author-info/favicon/site.webmanifest">
+    <link rel="mask-icon" href="../author-info/favicon/safari-pinned-tab.svg" color="#00ebff">
+    <meta name="msapplication-TileColor" content="#1a1f35">
+    <meta name="theme-color" content="#1a1f35">
+    
+    <!-- 自定義樣式 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 遊戲區域 -->
+    <div class="game-container">
+        <!-- 星空背景 -->
+        <div class="stars"></div>
+
+        <!-- 遊戲元素 -->
+        <div class="start-area">
+            <div class="start-point pulse">起點</div>
+        </div>
+        <div class="end-area">
+            <div class="end-point pulse">終點</div>
+        </div>
+        <div class="obstacles"></div>
+
+        <!-- 自定義光球 -->
+        <div class="cursor"></div>
+
+        <!-- 幽靈 -->
+        <div id="ghost" class="ghost">
+            <div class="ghost-body">
+                <div class="ghost-eyes">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+                <div class="ghost-mouth"></div>
+            </div>
+        </div>
+
+        <!-- 遊戲提示 -->
+        <div class="game-message"></div>
+    </div>
+
+    <!-- 作者信息 -->
+    <a href="https://github.com/nosmc" class="watermark" target="_blank" rel="noopener noreferrer">
+        <img src="../author-info/favicon/favicon-32x32.png" alt="nos">
+        <span>Created by nos</span>
+    </a>
+    <div class="copyright">
+        © 2024 nos. All rights reserved.
+    </div>
+    <div class="social-links">
+        <a href="https://discord.gg/Pah6vw36Tw" class="social-link" target="_blank" rel="noopener noreferrer" title="Discord">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://www.youtube.com/@n_os_" class="social-link" target="_blank" rel="noopener noreferrer" title="YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.instagram.com" class="social-link" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- JavaScript 模組 -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

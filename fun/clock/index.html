@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界時鐘</title>
+
+        <!-- 基本 Favicon -->
+        <link rel="shortcut icon" href="/author-info/favicon/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Author Info -->
+    <link rel="stylesheet" href="/author-info/author-style.css">
+    <!-- Favicon 配置 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/author-info/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/author-info/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/author-info/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/author-info/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/author-info/favicon/safari-pinned-tab.svg" color="#00ebff">
+    <meta name="msapplication-TileColor" content="#1a1f35">
+    <meta name="theme-color" content="#1a1f35">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <!-- 載入動畫 -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="loader-container">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+            </div>
+            <div class="loader-text">載入中</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>World Time</h1>
+            <div class="city-selector">
+                <div class="custom-select">
+                    <div class="select-selected">台北</div>
+                    <div class="select-items">
+                        <!-- 亞洲 -->
+                        <div class="select-group asia">亞洲</div>
+                        <div class="select-item" data-value="Asia/Tokyo" data-region="asia">東京</div>
+                        <div class="select-item" data-value="Asia/Shanghai" data-region="asia">上海</div>
+                        <div class="select-item" data-value="Asia/Hong_Kong" data-region="asia">香港</div>
+                        <div class="select-item" data-value="Asia/Singapore" data-region="asia">新加坡</div>
+                        <div class="select-item" data-value="Asia/Seoul" data-region="asia">首爾</div>
+                        <div class="select-item" data-value="Asia/Dubai" data-region="asia">杜拜</div>
+                        <div class="select-item" data-value="Asia/Bangkok" data-region="asia">曼谷</div>
+                        <div class="select-item" data-value="Asia/Taipei" data-region="asia">台北</div>
+                        <div class="select-item" data-value="Asia/Osaka" data-region="asia">大阪</div>
+                        <div class="select-item" data-value="Asia/Beijing" data-region="asia">北京</div>
+                        
+                        <!-- 歐洲 -->
+                        <div class="select-group europe">歐洲</div>
+                        <div class="select-item" data-value="Europe/London" data-region="europe">倫敦</div>
+                        <div class="select-item" data-value="Europe/Paris" data-region="europe">巴黎</div>
+                        <div class="select-item" data-value="Europe/Berlin" data-region="europe">柏林</div>
+                        <div class="select-item" data-value="Europe/Rome" data-region="europe">羅馬</div>
+                        <div class="select-item" data-value="Europe/Madrid" data-region="europe">馬德里</div>
+                        <div class="select-item" data-value="Europe/Amsterdam" data-region="europe">阿姆斯特丹</div>
+                        <div class="select-item" data-value="Europe/Moscow" data-region="europe">莫斯科</div>
+                        <div class="select-item" data-value="Europe/Vienna" data-region="europe">維也納</div>
+                        <div class="select-item" data-value="Europe/Athens" data-region="europe">雅典</div>
+                        <div class="select-item" data-value="Europe/Stockholm" data-region="europe">斯德哥爾摩</div>
+                        
+                        <!-- 北美洲 -->
+                        <div class="select-group america">北美洲</div>
+                        <div class="select-item" data-value="America/New_York" data-region="america">紐約</div>
+                        <div class="select-item" data-value="America/Los_Angeles" data-region="america">洛杉磯</div>
+                        <div class="select-item" data-value="America/Chicago" data-region="america">芝加哥</div>
+                        <div class="select-item" data-value="America/Toronto" data-region="america">多倫多</div>
+                        <div class="select-item" data-value="America/Vancouver" data-region="america">溫哥華</div>
+                        <div class="select-item" data-value="America/Mexico_City" data-region="america">墨西哥城</div>
+                        <div class="select-item" data-value="America/Miami" data-region="america">邁阿密</div>
+                        <div class="select-item" data-value="America/San_Francisco" data-region="america">舊金山</div>
+                        
+                        <!-- 南美洲 -->
+                        <div class="select-group america">南美洲</div>
+                        <div class="select-item" data-value="America/Sao_Paulo" data-region="america">聖保羅</div>
+                        <div class="select-item" data-value="America/Buenos_Aires" data-region="america">布宜諾斯艾利斯</div>
+                        <div class="select-item" data-value="America/Santiago" data-region="america">聖地亞哥</div>
+                        <div class="select-item" data-value="America/Lima" data-region="america">利馬</div>
+                        <div class="select-item" data-value="America/Bogota" data-region="america">波哥大</div>
+                        <div class="select-item" data-value="America/Caracas" data-region="america">卡拉卡斯</div>
+                        
+                        <!-- 大洋洲 -->
+                        <div class="select-group oceania">大洋洲</div>
+                        <div class="select-item" data-value="Australia/Sydney" data-region="oceania">雪梨</div>
+                        <div class="select-item" data-value="Australia/Melbourne" data-region="oceania">墨爾本</div>
+                        <div class="select-item" data-value="Pacific/Auckland" data-region="oceania">奧克蘭</div>
+                        <div class="select-item" data-value="Australia/Brisbane" data-region="oceania">布里斯本</div>
+                        <div class="select-item" data-value="Australia/Perth" data-region="oceania">伯斯</div>
+                        <div class="select-item" data-value="Pacific/Honolulu" data-region="oceania">檀香山</div>
+                        <div class="select-item" data-value="Pacific/Fiji" data-region="oceania">斐濟</div>
+                        <div class="select-item" data-value="Pacific/Guam" data-region="oceania">關島</div>
+                        
+                        <!-- 非洲 -->
+                        <div class="select-group africa">非洲</div>
+                        <div class="select-item" data-value="Africa/Cairo" data-region="africa">開羅</div>
+                        <div class="select-item" data-value="Africa/Johannesburg" data-region="africa">約翰尼斯堡</div>
+                        <div class="select-item" data-value="Africa/Lagos" data-region="africa">拉各斯</div>
+                        <div class="select-item" data-value="Africa/Nairobi" data-region="africa">奈洛比</div>
+                        <div class="select-item" data-value="Africa/Casablanca" data-region="africa">卡薩布蘭卡</div>
+                        <div class="select-item" data-value="Africa/Addis_Ababa" data-region="africa">亞的斯亞貝巴</div>
+                        <div class="select-item" data-value="Africa/Accra" data-region="africa">阿克拉</div>
+                        <div class="select-item" data-value="Africa/Tunis" data-region="africa">突尼斯</div>
+                        
+                        <!-- 南極洲 -->
+                        <div class="select-group antarctica">南極洲</div>
+                        <div class="select-item" data-value="Antarctica/McMurdo" data-region="antarctica">麥克默多站</div>
+                        <div class="select-item" data-value="Antarctica/Casey" data-region="antarctica">凱西站</div>
+                        <div class="select-item" data-value="Antarctica/Davis" data-region="antarctica">戴維斯站</div>
+                        <div class="select-item" data-value="Antarctica/Palmer" data-region="antarctica">帕爾默站</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <div class="clock-container">
+                <div class="clock">
+                    <div class="number-ring hours"></div>
+                    <div class="number-ring minutes"></div>
+                    <div class="number-ring seconds"></div>
+                    <div class="city-info">
+                        <span class="city-name">台北</span>
+                        <span class="time-display">00:00:00</span>
+                        <span class="date-display"></span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Author Info Component -->
+    <a href="https://github.com/nosmc" class="watermark" target="_blank" rel="noopener noreferrer">
+        <img src="/author-info/favicon/favicon-32x32.png" alt="nos">
+        <span>Created by nos</span>
+    </a>
+    <div class="copyright">
+        © 2024 nos. All rights reserved.
+    </div>
+    <div class="social-links">
+        <a href="https://discord.gg/Pah6vw36Tw" class="social-link" target="_blank" rel="noopener noreferrer" title="Discord">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://www.youtube.com/@n_os_" class="social-link" target="_blank" rel="noopener noreferrer" title="YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.instagram.com" class="social-link" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="scripts/modules/app.js"></script>
+</body>
+</html> 

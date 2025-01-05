@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幹話生成器</title>
+
+        <!-- 基本 Favicon -->
+        <link rel="shortcut icon" href="/author-info/favicon/favicon.ico">
+
+    <meta name="description" content="讓我們一起來說幹話吧！">
+    <meta property="og:title" content="幹話生成器">
+    <meta property="og:description" content="讓我們一起來說幹話吧！">
+    <meta name="twitter:title" content="幹話生成器">
+    <meta name="twitter:description" content="讓我們一起來說幹話吧！">
+    
+    <!-- 預載入字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- 樣式表 -->
+    <link rel="stylesheet" href="styles/scss/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/author-info/author-style.css">
+
+    <!-- Favicon 配置 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/author-info/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/author-info/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/author-info/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/author-info/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/author-info/favicon/safari-pinned-tab.svg" color="#00ebff">
+    <meta name="msapplication-TileColor" content="#1a1f35">
+    <meta name="theme-color" content="#1a1f35">
+    
+    <!-- 使用 ES 模組方式載入腳本 -->
+    <script type="module" src="scripts/index.js"></script>
+</head>
+<body>
+    <!-- 載入動畫 -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="loader-container">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+            </div>
+            <div class="loader-text">載入中</div>
+        </div>
+    </div>
+
+    <!-- 錯誤提示 Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <div class="header">
+            <h1 class="title">幹話生成器</h1>
+            <p class="subtitle">讓我們一起來說幹話吧！</p>
+            <div class="header-controls">
+                <button class="icon-btn" id="darkModeToggle" title="切換深色模式">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="icon-btn" id="statsToggle" title="查看統計">
+                    <i class="fas fa-chart-bar"></i>
+                </button>
+                <button class="icon-btn" id="favoritesToggle" title="我的收藏">
+                    <i class="fas fa-bookmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 主題選擇器 -->
+        <div class="selector-group">
+            <select id="themeSelect" style="display: none;">
+                <option value="random">隨機主題</option>
+                <!-- 主題選項將由 JavaScript 動態添加 -->
+            </select>
+
+            <div class="custom-select" id="customSelect">
+                <div class="select-selected">
+                    <span class="select-text">隨機主題</span>
+                    <span class="select-icon">🎲</span>
+                </div>
+                <div class="select-items">
+                    <div class="search-box">
+                        <input type="text" id="themeSearch" placeholder="搜尋主題...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="select-item selected" data-value="random">
+                        <span class="select-text">隨機主題</span>
+                        <span class="select-icon">🎲</span>
+                    </div>
+                    <!-- 主題選項將由 JavaScript 動態添加 -->
+                </div>
+            </div>
+
+            <!-- 標籤選擇器 -->
+            <div class="tags-container" id="tagsContainer">
+                <button class="expand-tags-btn" id="expandTagsBtn">
+                    <span class="current-tag" id="currentTagText">全部</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="tags-panel" id="tagsPanel">
+                    <div class="search-box">
+                        <input type="text" id="tagSearch" placeholder="搜尋標籤...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="tags-scroll" id="tagsScroll">
+                        <button class="tag-btn active" data-tag="all">全部</button>
+                        <button class="tag-btn" data-tag="metaphor">比喻型</button>
+                        <button class="tag-btn" data-tag="positive">正能量</button>
+                        <button class="tag-btn" data-tag="negative">負能量</button>
+                        <button class="tag-btn" data-tag="motivation">激勵型</button>
+                        <button class="tag-btn" data-tag="romantic">浪漫型</button>
+                        <button class="tag-btn" data-tag="irony">諷刺型</button>
+                        <button class="tag-btn" data-tag="philosophical">哲理型</button>
+                        <button class="tag-btn" data-tag="warm">溫暖型</button>
+                        <button class="tag-btn" data-tag="comfort">安慰型</button>
+                        <button class="tag-btn" data-tag="modern">現代型</button>
+                        <button class="tag-btn" data-tag="deep">深度型</button>
+                        <button class="tag-btn" data-tag="geek">極客型</button>
+                        <button class="tag-btn" data-tag="artistic">藝術型</button>
+                        <button class="tag-btn" data-tag="professional">專業型</button>
+                        <button class="tag-btn" data-tag="movie">電影型</button>
+                        <button class="tag-btn" data-tag="elegant">優雅型</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="generate-btn" id="generateBtn">
+            <i class="fas fa-bolt btn-icon"></i>
+            生成幹話
+        </button>
+
+        <div class="result-box">
+            <div class="result-content" id="resultContent">
+                點擊上方按鈕開始生成幹話
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn favorite-btn" id="favoriteBtn" title="收藏">
+                    <i class="far fa-heart"></i>
+                </button>
+                <button class="action-btn share-btn" id="shareBtn" title="分享">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="action-btn copy-btn" id="copyBtn" title="複製">
+                    <i class="fas fa-copy"></i>
+                    複製
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 統計面板 -->
+    <div class="panel stats-panel" id="statsPanel">
+        <div class="panel-header">
+            <h3><i class="fas fa-chart-bar"></i> 使用統計</h3>
+            <button class="close-btn" id="closeStatsBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="panel-content">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="stat-value" id="generateCount">0</div>
+                    <div class="stat-label">生成次數</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                    <div class="stat-value" id="favoriteCount">0</div>
+                    <div class="stat-label">收藏數量</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-share-alt"></i></div>
+                    <div class="stat-value" id="shareCount">0</div>
+                    <div class="stat-label">分享次數</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-copy"></i></div>
+                    <div class="stat-value" id="copyCount">0</div>
+                    <div class="stat-label">複製次數</div>
+                </div>
+            </div>
+            <div class="theme-stats">
+                <h4>主題統計</h4>
+                <div class="theme-chart" id="themeChart"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 收藏面板 -->
+    <div class="panel favorites-panel" id="favoritesPanel">
+        <div class="panel-header">
+            <h3><i class="fas fa-bookmark"></i> 我的收藏</h3>
+            <button class="close-btn" id="closeFavoritesBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="panel-content">
+            <div class="favorites-list" id="favoritesList"></div>
+            <div class="empty-favorites" id="emptyFavorites">
+                <i class="far fa-heart"></i>
+                <p>還沒有收藏的幹話</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 遮罩層 -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Author Info -->
+    <a href="https://github.com/nosmc" class="watermark" target="_blank" rel="noopener noreferrer">
+        <img src="/author-info/favicon/favicon.ico" alt="nos">
+        <span>Created by nos</span>
+    </a>
+    <div class="copyright">
+        © 2024 nos. All rights reserved.
+    </div>
+    <div class="social-links">
+        <a href="https://discord.gg/Pah6vw36Tw" class="social-link" target="_blank" rel="noopener noreferrer" title="Discord">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://www.youtube.com/@n_os_" class="social-link" target="_blank" rel="noopener noreferrer" title="YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.instagram.com" class="social-link" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+</body>
+</html> 

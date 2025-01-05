@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時間旅行者的日曆</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-retro">
+    <div class="container">
+        <header class="header">
+            <h1 class="title">時間旅行者的日曆</h1>
+            <div class="time-machine-controls">
+                <button id="randomTimeBtn" class="btn-retro">隨機時間跳躍</button>
+                <div class="current-date"></div>
+            </div>
+        </header>
+
+        <main class="calendar-container">
+            <div class="calendar-wrapper">
+                <div class="calendar-header">
+                    <button id="prevMonth" class="nav-btn">&lt;</button>
+                    <h2 id="currentMonth">2024年 1月</h2>
+                    <button id="nextMonth" class="nav-btn">&gt;</button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="weekday">日</div>
+                    <div class="weekday">一</div>
+                    <div class="weekday">二</div>
+                    <div class="weekday">三</div>
+                    <div class="weekday">四</div>
+                    <div class="weekday">五</div>
+                    <div class="weekday">六</div>
+                </div>
+                <div id="calendarDays" class="calendar-days"></div>
+            </div>
+
+            <div class="event-display">
+                <div class="event-card hidden">
+                    <h3 class="event-title">時間事件</h3>
+                    <p class="event-description"></p>
+                    <div class="event-illustration"></div>
+                </div>
+            </div>
+        </main>
+
+        <div class="submit-event-section">
+            <h3>提交你的時間事件</h3>
+            <form id="eventSubmitForm" class="event-form">
+                <input type="date" id="eventDate" required>
+                <textarea id="eventDescription" placeholder="描述你的時間事件..." required></textarea>
+                <button type="submit" class="btn-retro">提交事件</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="notification" class="notification hidden">
+        <p class="notification-text"></p>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html> 

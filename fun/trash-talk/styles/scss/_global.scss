@@ -1,0 +1,197 @@
+@import 'variables';
+
+/* 全局重置 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+html {
+    height: 100%;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-body);
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 載入動畫 */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.loader {
+    text-align: center;
+    
+    .loader-ring {
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+        border: 4px solid var(--primary-color);
+        border-radius: 50%;
+        border-top-color: transparent;
+        animation: spin 1s linear infinite;
+    }
+    
+    .loader-text {
+        margin-top: 1rem;
+        color: var(--text-color);
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+    }
+}
+
+/* Toast 提示 */
+.toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--container-bg);
+    border: var(--container-border);
+    border-radius: 12px;
+    box-shadow: var(--container-shadow);
+    backdrop-filter: blur(10px);
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    min-width: 300px;
+    
+    &.show {
+        transform: translateX(0);
+    }
+    
+    &.error {
+        border-color: rgba(255, 0, 0, 0.2);
+        .toast-icon { color: #ff4444; }
+    }
+    
+    &.success {
+        border-color: rgba(0, 255, 128, 0.2);
+        .toast-icon { color: #00ff80; }
+    }
+    
+    &.info {
+        border-color: rgba(0, 128, 255, 0.2);
+        .toast-icon { color: #0080ff; }
+    }
+}
+
+.toast-icon {
+    font-size: 1.2rem;
+    margin-right: 0.8rem;
+}
+
+.toast-content {
+    flex: 1;
+    color: var(--text-color);
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    margin: -0.5rem;
+    transition: color 0.3s ease;
+    
+    &:hover {
+        color: var(--text-color);
+    }
+}
+
+/* 動畫效果 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* 滾動條樣式 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+    
+    &:hover {
+        background: var(--primary-dark);
+    }
+}
+
+/* 選擇文本樣式 */
+::selection {
+    background: var(--primary-color);
+    color: var(--bg-color);
+}
+
+/* 僅允許搜索輸入框中的文字可以被選取 */
+input[type="text"],
+input[type="search"] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+} 

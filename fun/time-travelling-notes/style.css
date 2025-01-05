@@ -1,0 +1,225 @@
+:root {
+    --color-primary: #F2E9B3;
+    --color-secondary: #4E3B31;
+    --color-accent: #B8E3B0;
+    --color-dark: #2C3E50;
+    --color-light: #ECF0F1;
+    --color-hover: #A7C6ED;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif TC', serif;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    line-height: 1.6;
+}
+
+.bg-retro {
+    background-image: 
+        linear-gradient(rgba(242, 233, 179, 0.1) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(242, 233, 179, 0.1) 2px, transparent 2px);
+    background-size: 30px 30px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.title {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px var(--shadow-color);
+}
+
+.time-machine-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-retro {
+    padding: 0.8rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--color-dark);
+    background: var(--color-primary);
+    border: 2px solid var(--color-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-retro:hover {
+    background: var(--color-hover);
+    transform: translateY(-2px);
+}
+
+.calendar-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.calendar-wrapper {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.nav-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-secondary);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.weekday {
+    font-weight: bold;
+    padding: 0.5rem;
+    color: var(--color-secondary);
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.calendar-day {
+    padding: 0.5rem;
+    border: 1px solid var(--color-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calendar-day:hover {
+    background: var(--color-hover);
+    transform: scale(1.1);
+}
+
+.event-display {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.event-card {
+    padding: 1rem;
+    border: 2px solid var(--color-secondary);
+    border-radius: 5px;
+}
+
+.event-card.hidden {
+    display: none;
+}
+
+.event-title {
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.event-description {
+    margin-bottom: 1rem;
+}
+
+.event-illustration {
+    width: 100%;
+    height: 200px;
+    background: var(--color-accent);
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.submit-event-section {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.event-form input,
+.event-form textarea {
+    padding: 0.8rem;
+    font-family: inherit;
+    border: 2px solid var(--color-secondary);
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 2rem;
+    background: var(--color-accent);
+    border-radius: 5px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transform: translateY(150%);
+    transition: transform 0.3s ease;
+}
+
+.notification.show {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .calendar-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+} 

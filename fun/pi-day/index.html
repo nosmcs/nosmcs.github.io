@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Day 生日位置查詢</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 基本樣式 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 容器 */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* 標題 */
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #ffeb3b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* 說明文字 */
+        p {
+            margin-bottom: 30px;
+            font-size: 1em;
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        /* 輸入框樣式 */
+        input[type="number"] {
+            width: 80%;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: transform 0.2s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 235, 59, 0.7);
+        }
+
+        /* 按鈕樣式 */
+        #searchBtn {
+            background-color: #ffeb3b;
+            color: #1e3c72;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        #searchBtn:hover {
+            background-color: #fdd835;
+            transform: translateY(-3px);
+        }
+
+        #searchBtn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* 加載動畫 */
+        #loading {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ffeb3b;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        /* 結果區域 */
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: none;
+            animation: slideIn 0.5s forwards;
+        }
+
+        #piDisplay {
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 15px;
+            word-wrap: break-word;
+        }
+
+        #positionInfo {
+            font-size: 1em;
+            color: #ffeb3b;
+        }
+
+        /* 錯誤訊息 */
+        .text-red-500 {
+            color: #f44336;
+        }
+
+        /* 動畫定義 */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 隱藏類 */
+        .hidden {
+            display: none;
+        }
+
+        /* 文字效果 */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-green-500 {
+            color: #4caf50;
+        }
+
+        .text-yellow-500 {
+            color: #ffeb3b;
+        }
+
+        .text-indigo-600 {
+            color: #3f51b5;
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+
+        .font-mono {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .bg-gray-100 {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .py-1 {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+
+        .rounded {
+            border-radius: 5px;
+        }
+
+        .opacity-50 {
+            opacity: 0.5;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎂 在 π 中找到你的生日</h1>
+        <p>探索你的生日數字在圓周率中的獨特位置</p>
+
+        <div>
+            <input type="number" id="year" placeholder="1-9999年" min="1" max="9999">
+            <input type="number" id="month" placeholder="1-12月" min="1" max="12">
+            <input type="number" id="day" placeholder="1-31日" min="1" max="31">
+        </div>
+
+        <button id="searchBtn" disabled>開始尋找</button>
+
+        <div id="loading" class="spinner hidden"></div>
+
+        <div id="result" class="hidden">
+            <div id="piDisplay"></div>
+            <div id="positionInfo"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

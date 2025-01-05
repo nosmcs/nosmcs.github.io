@@ -1,0 +1,330 @@
+/* 全局樣式 */
+:root {
+    --chat-primary: #00ebff;
+    --chat-dark: #1a1f35;
+    --chat-light: #e3f2fd;
+    --chat-glow: 0 0 10px rgba(0, 235, 255, 0.5);
+}
+
+body {
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(0, 235, 255, 0.05) 0%, transparent 50%),
+        linear-gradient(to bottom right, var(--chat-dark), #000810);
+}
+
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* 文字發光效果 */
+.text-shadow-glow {
+    text-shadow: 0 0 10px rgba(0, 235, 255, 0.5),
+                 0 0 20px rgba(0, 235, 255, 0.3),
+                 0 0 30px rgba(0, 235, 255, 0.2);
+}
+
+/* 容器樣式 */
+.chat-container {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(0, 235, 255, 0.1);
+    animation: containerGlow 4s ease-in-out infinite;
+}
+
+@keyframes containerGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(0, 235, 255, 0.1); }
+    50% { box-shadow: 0 0 30px rgba(0, 0, 0, 0.4), inset 0 0 30px rgba(0, 235, 255, 0.15); }
+}
+
+/* 星空背景 */
+#starfield {
+    background: radial-gradient(circle at center, rgba(0, 235, 255, 0.1) 0%, transparent 60%);
+    opacity: 0.6;
+}
+
+.star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle var(--duration) ease-in-out infinite;
+    box-shadow: 0 0 4px rgba(0, 235, 255, 0.3);
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 自定義滾動條 */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    margin: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 235, 255, 0.3);
+    border-radius: 3px;
+    border: 1px solid rgba(0, 235, 255, 0.1);
+    box-shadow: var(--chat-glow);
+    backdrop-filter: blur(5px);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 235, 255, 0.5);
+    border-color: rgba(0, 235, 255, 0.2);
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* 訊息氣泡樣式 */
+.message {
+    max-width: 80%;
+    padding: 16px 20px;
+    border-radius: 16px;
+    margin: 12px 0;
+    line-height: 1.6;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+    border: 1px solid rgba(0, 235, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    white-space: pre-wrap;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.message:hover {
+    border-color: rgba(0, 235, 255, 0.2);
+    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.2),
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 0 10px rgba(0, 235, 255, 0.1);
+}
+
+.message::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: inherit;
+    border: inherit;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.message .message-actions {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    padding: 4px 8px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.message:hover .message-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.message-action-btn {
+    color: var(--chat-primary);
+    opacity: 0.6;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.message-action-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background: rgba(0, 235, 255, 0.1);
+    box-shadow: var(--chat-glow);
+}
+
+.user-message {
+    margin-left: auto;
+    background: rgba(0, 235, 255, 0.1);
+    color: var(--chat-primary);
+    border-bottom-right-radius: 4px;
+}
+
+.user-message::before {
+    right: -6px;
+    top: 16px;
+    transform: rotate(45deg);
+}
+
+.bot-message {
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-bottom-left-radius: 4px;
+}
+
+.bot-message::before {
+    left: -6px;
+    top: 16px;
+    transform: rotate(-45deg);
+}
+
+/* 程式碼區塊樣式 */
+.message pre {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    overflow-x: auto;
+    border: 1px solid rgba(0, 235, 255, 0.1);
+    position: relative;
+}
+
+.message pre::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    color: var(--chat-primary);
+    background: rgba(0, 0, 0, 0.4);
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    opacity: 0.7;
+}
+
+.message code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+}
+
+.message p {
+    margin: 0.5rem 0;
+}
+
+/* 載入動畫 */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    width: fit-content;
+    margin: 8px 0;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--chat-primary);
+    border-radius: 50%;
+    animation: typingAnimation 1s infinite ease-in-out;
+    filter: drop-shadow(0 0 6px rgba(0, 235, 255, 0.5));
+}
+
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* 輸入區域樣式 */
+.input-container {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.input-container:focus-within {
+    transform: translateY(-2px);
+}
+
+.input-container textarea {
+    transition: all 0.3s ease;
+}
+
+.input-container textarea:focus {
+    box-shadow: 0 0 0 2px rgba(0, 235, 255, 0.3),
+                0 0 20px rgba(0, 235, 255, 0.1);
+}
+
+/* Toast 動畫 */
+.toast-show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* 預覽視窗動畫 */
+#preview-modal {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+}
+
+#preview-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#preview-modal .modal-content {
+    transform: scale(0.95);
+    transition: all 0.3s ease-in-out;
+}
+
+#preview-modal.show .modal-content {
+    transform: scale(1);
+}
+
+/* 動畫效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typingAnimation {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .message {
+        max-width: 90%;
+        padding: 12px 16px;
+    }
+
+    .message .message-actions {
+        opacity: 1;
+        position: relative;
+        top: 0;
+        right: 0;
+        justify-content: flex-end;
+        margin-top: 0.5rem;
+        background: transparent;
+    }
+    
+    .input-container textarea {
+        font-size: 16px; /* 防止iOS縮放 */
+    }
+} 

@@ -1,0 +1,13 @@
+{
+  "name": "trash-talk",
+  "version": "1.0.0",
+  "description": "幹話生成器",
+  "scripts": {
+    "sass": "sass styles/scss/style.scss:styles/scss/style.css --style compressed --watch",
+    "build": "sass styles/scss/style.scss:styles/scss/style.css --style compressed",
+    "dev": "sass styles/scss/style.scss:styles/scss/style.css --style expanded --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+} 

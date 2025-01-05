@@ -1,0 +1,59 @@
+// 主題變數
+:root {
+    /* 主色調 */
+    --primary-color: #00f7ff;
+    --primary-dark: #00c8ff;
+    --primary-light: #80f5ff;
+    
+    /* 輔助色 */
+    --accent-color: #bf00ff;
+    --accent-dark: #9000bf;
+    --success-color: #00ff9d;
+    
+    /* 背景色 */
+    --bg-color: #1e2433;
+    --bg-gradient: linear-gradient(135deg, #1e2433 0%, #171c29 100%);
+    --bg-dark-gradient: linear-gradient(135deg, #0f1219 0%, #1a1f2c 100%);
+    
+    /* 容器背景 */
+    --container-bg: rgba(30, 36, 51, 0.95);
+    --container-border: 1px solid rgba(0, 247, 255, 0.15);
+    --container-shadow: 0 8px 32px rgba(0, 247, 255, 0.2);
+    
+    /* 按鈕樣式 */
+    --btn-bg: linear-gradient(135deg, #00f7ff, #00c8ff);
+    --btn-hover-bg: linear-gradient(135deg, #00c8ff, #00f7ff);
+    --btn-text: #ffffff;
+    --btn-shadow: 0 4px 15px rgba(0, 247, 255, 0.4);
+    --btn-hover-shadow: 0 6px 20px rgba(0, 247, 255, 0.6);
+    
+    /* 文字顏色 */
+    --text-color: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    
+    /* 面板相關 */
+    --panel-width: 400px;
+    --panel-bg: rgba(30, 36, 51, 0.98);
+    --panel-border: 1px solid rgba(0, 247, 255, 0.25);
+    --panel-shadow: 0 0 40px rgba(0, 247, 255, 0.25);
+    
+    /* 其他元素 */
+    --select-bg: rgba(255, 255, 255, 0.12);
+    --select-hover-bg: rgba(255, 255, 255, 0.18);
+    --tag-bg: rgba(255, 255, 255, 0.12);
+    --tag-active: var(--primary-color);
+    --result-bg: rgba(30, 36, 51, 0.9);
+    
+    /* 字體 */
+    --font-title: 'Orbitron', 'Noto Sans TC', sans-serif;
+    --font-body: 'Noto Sans TC', sans-serif;
+}
+
+[data-theme="dark"] {
+    --bg-color: #0f1219;
+    --container-bg: rgba(15, 18, 25, 0.95);
+    --btn-bg: linear-gradient(135deg, #00c8ff, #00a0ff);
+    --btn-hover-bg: linear-gradient(135deg, #00a0ff, #00c8ff);
+    --panel-bg: rgba(15, 18, 25, 0.98);
+    --result-bg: rgba(15, 18, 25, 0.8);
+} 
